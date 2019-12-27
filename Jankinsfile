@@ -1,0 +1,26 @@
+pipeline {
+ agent {
+	label 'dev1'
+ }
+   stages {
+ 
+      stage("Checkout") {
+        steps {
+           git credentialsId: 'jenkins-user-ssh-key', url: 'git@github.com:eletenkov/calculator.git', branch: 'master'
+        }
+      }
+ 
+      stage("Compile") {
+        steps {
+          sh "./mvnw package"
+        }
+      }
+ 
+      stage("Unit test") {
+        steps {
+          sh "./mvnw test"
+        }
+      }
+   
+  }
+}
