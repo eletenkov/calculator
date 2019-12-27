@@ -54,6 +54,13 @@ pipeline {
       }
     }
 
+    stage("Acceptance test") {
+      steps {
+        sleep 15
+        sh "./acceptance_test.sh"
+      }
+    }
+    
   }
 
   post {
